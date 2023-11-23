@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import { FC } from "react";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import AppBar from "@mui/material/AppBar";
@@ -8,7 +7,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-export default function ButtonAppBar() {
+interface Props {
+  userNameConnected: string | null
+}
+const ButtonAppBar: FC<Props> = ({
+  userNameConnected
+}
+)=> {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -35,8 +40,15 @@ export default function ButtonAppBar() {
               Administration
             </Typography>
           </Link>
+          {userNameConnected ? <Typography
+              sx={{ ml: "20px",fontSize: 20 }}
+              className="text-inherit"
+            >
+              {`Bienvenid@ ${userNameConnected}`} 
+            </Typography> : null}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+export default ButtonAppBar;
