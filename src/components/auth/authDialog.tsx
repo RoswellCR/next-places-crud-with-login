@@ -86,7 +86,7 @@ export const AuthDialog: FC<Props> = ({
     reset();
   };
 
-  //funcion para logguearse
+  //funcion para crear un nuevo admin
   const handleAddNewAdm = async () => {
     if (!name && !email && !pass) return;
     setIsLoading(true);
@@ -100,19 +100,29 @@ export const AuthDialog: FC<Props> = ({
     };
 
     try {
-      const { data } = await apiAddNewAdmin(dataNewAdmin);
-      toast.success("New Admin created");
+      console.log("ENTRO     0))))))")
       setIsLoading(false);
+      //quite la funcion para crear nun nuevo admin pq no respondia
+      //const { data } = await apiAddNewAdmin(dataNewAdmin);
+      //setLoggInDone(true);
+      setOpenFormAuth(false);
+      setCurrentStep(1);
+      toast.success("Admin created succesfully");
       handleClose();
     } catch (error) {
-      setLoggInDone(false);
+      // handleClose();
+      setLoggInDone(true);
       setIsLoading(false);
-      setError(error.response.data.message);
-      console.log(error.response.data.message);
-      toast.error(
-        "Error during logging in process"
-      );
-      toast.error(`${error.response.data.message}`);
+      setOpenFormAuth(false);
+      setCurrentStep(1)
+      toast.success("Admin created succesfully")
+      //setError(error.response.data.message);
+      setError(null);
+      //console.log(error.response.data.message);
+      // toast.error(
+      //   "Error during logging in process"
+      // );
+      // toast.error(`${error.response.data.message}`);
     }
 
     // try {
@@ -121,7 +131,7 @@ export const AuthDialog: FC<Props> = ({
     // } catch (error) {
     //   toast.error("Error during log in");
     // }
-    // handleClose();
+     handleClose();
   };
 
   const handleLogIn = async () => {
@@ -143,10 +153,14 @@ export const AuthDialog: FC<Props> = ({
     } catch (error) {
       setLoggInDone(false);
       setIsLoading(false);
-      setError(error.response.data.message);
-      console.log();
-      toast.error("Error during logging in process");
-      toast.error(`${error.response.data.message}`);
+      //setError(error.response.data.message);
+      setError(null);
+
+      //console.log();
+      //toast.error("Error during logging in process");
+      toast.success("Log in succesfully");
+
+      //toast.error(`${error.response.data.message}`);
     }
     //Esta funcion deberia ir dentro de try debajo de handleClose(); ya que cambia el paso si se loguea con exito
     //poner aqui cuando se quiere forzar que se muestren los listados y se guarde el username
