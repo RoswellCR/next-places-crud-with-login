@@ -34,8 +34,8 @@ export const addCatThunk = (cat: ICategory) => {
     //console.log(tempPlace)
     dispatch(startLoadingCat());
     try {
-      const { data } = await postApi.post(`/lugar`, cat);
-      dispatch(addCat(cat)); //Most be {data}. it's for test ***cambiar a llamada a API
+      const { data } = await postApi.post(`/categoria`, cat);
+      dispatch(addCat(tempCat)); //Most be {tempCat}. it's for test ***cambiar a llamada a API
     } catch (error) {
       console.log("Error in Catgory POST method", error);
     }
@@ -69,7 +69,7 @@ export const deleteCatThunk = (id: string) => {
       const { data } = await postApi.delete(`/categoria/${id}`);
       dispatch(deleteCat(id)); //Most be {data.id} intend. it's for test
     } catch (error) {
-      console.log("Error in DELETE categorie method", error);
+      console.log("Error in DELETE category method", error);
     }
   };
 };
