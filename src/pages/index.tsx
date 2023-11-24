@@ -178,7 +178,7 @@ export default function PostsPage() {
     const rowsCat =
     filteredCat &&
     filteredCat.map((cat: ICategory) => ({
-      id: generateRandomString(),//preventivamente para que no de error, pero deberia ser cat.id
+      id: generateRandomString(),//generateRandomString(),//preventivamente para que no de error, pero deberia ser cat.id
       nombre: cat.nombre,
     }));  
 
@@ -301,7 +301,7 @@ export default function PostsPage() {
                 rows={rowsCat}
                 columns={columnsCat}
                 hideFooterSelectedRowCount
-                loading={isLoadingCat}
+                loading={false} //isLoadingCat, pero demoraria mucho
                 // density="compact"
                 initialState={{
                   pagination: {

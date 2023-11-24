@@ -13,12 +13,10 @@ import DialogContent from "@mui/material/DialogContent";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-import { IPost } from "@/interfaces";
 import { validateTrim } from "@/util/validation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addPostThunk, updatePostThunk } from "@/redux/slices/post";
-import { IPlace } from "@/interfaces/place";
 import { ICategory } from '../../interfaces/category';
+import { addCatThunk, updateCatThunk } from "@/redux/slices/categ/thunks";
 
 interface Props {
   isUpdateCat: boolean;
@@ -38,8 +36,7 @@ export const FormDialogCat: FC<Props> = ({
   setIsUpdateCat,
 }) => {
   const [nombre, setNombre] = useState<string>("");
-  const [categoriasPermitidas, setCategoriasPermitidas] = useState<string[]>([]);
-
+  
   const { isLoadingCat } = useAppSelector((state) => state.category);
   const dispatch = useAppDispatch();
   
@@ -80,7 +77,7 @@ export const FormDialogCat: FC<Props> = ({
     setIsUpdateCat(false);
   };
 
-  //funcion para crear un nuevo lugar
+  //funcion para crear una nueva categoria
   const handleAddPost = async () => {
     if (!nombre) return;
 
@@ -90,7 +87,7 @@ export const FormDialogCat: FC<Props> = ({
     };
 
     try {
-      await dispatch(addPostThunk(newCat));
+      await dispatch(addCatThunk(newCat));
       toast.success("The category was created successfully");
     } catch (error) {
       toast.error("Error during insert category");
@@ -108,7 +105,7 @@ export const FormDialogCat: FC<Props> = ({
     } as ICategory;
 
     try {
-      await dispatch(updatePostThunk(editedCat));
+      await dispatch(updateCatThunk(editedCat));
       toast.success("The category was successfully updated");
     } catch (error) {
       toast.error("Error during update category");
@@ -171,7 +168,7 @@ export const FormDialogCat: FC<Props> = ({
           <Button onClick={() => handleClose()} color="inherit">
             Cancel
           </Button>
-          <Button type="submit" disabled={isLoadingCat} color="primary">
+          <Button type="submit" disabled={false} color="primary">
             {isUpdateCat ? "Editar Categoria" : "Añadir Categoria"}
           </Button>
         </DialogActions>
