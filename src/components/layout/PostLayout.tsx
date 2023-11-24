@@ -38,7 +38,10 @@ export const PostLayout: FC<Props> = ({
           }}
         >
           <Typography variant="h5" component="h1" sx={{maxHeight:"30px", maxWidth: "100px"}}>
-            {icon} {title}
+            {icon}
+          </Typography>
+          <Typography variant="h5" component="h1" sx={{pl: "10px", maxHeight:"80px", maxWidth: "350px"}}>
+           {title}
           </Typography>
           <Box sx={{display:"flex",flexDirection:"row",  justifyContent: "right", alignContent:"right", width: "95%"}}>
             <Button
