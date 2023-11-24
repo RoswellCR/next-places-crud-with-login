@@ -98,7 +98,7 @@ export default function PostsPage() {
     filteredPlace.map((place: IPlace) => ({
       id: place._id,
       nombre: place.nombre,
-      categoriasPermitidas: place.categoriasPermitidas[0],
+      categoriasPermitidas: place.categoriasPermitidas,
     }));
   return (
     <>

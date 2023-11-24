@@ -31,6 +31,7 @@ export const addPostThunk = (place: IPlace) => {
       nombre: place.nombre,
       _id: 1,
     };
+    //console.log(tempPlace)
     dispatch(startLoadingPlace());
     try {
       const { data } = await postApi.post(`/lugar`, tempPlace);
